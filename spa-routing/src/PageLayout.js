@@ -6,9 +6,9 @@ const PageLayout = ({ heading, links, children }) => {
 
       <nav>
         {links.map(({ to, text }) => (
-          <div>
+          <li>
             <Link to={to}>{text}</Link>
-          </div>
+          </li>
         ))}
       </nav>
     </div>
