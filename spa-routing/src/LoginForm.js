@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function LoginForm({ onSubmit }) {
-  const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
 
