@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import PageLayout from "./PageLayout";
 
 const users = [];
 export default function UserLogin() {
@@ -32,12 +33,10 @@ export default function UserLogin() {
 function HomePage() {
   // Link 컴포넌트를 추가하세요.
   return (
-    <div>
-      <h2>Home Page</h2>
-      <div>
-        <Link to="/login">Login</Link>
-      </div>
-    </div>
+    <PageLayout
+      heading="Welcome to Home Page"
+      links={[{ to: "/login", text: "Login" }]}
+    />
   );
 }
 
@@ -54,21 +53,16 @@ function LoginPage() {
     else alert("등록된 이메일이 아닙니다. 회원가입해주세요.");
   };
   return (
-    <div>
-      <h2>Login Page</h2>
+    <>
+      <PageLayout
+        heading="Login Page"
+        links={[
+          { to: "/", text: "Back to home" },
+          { to: "/Register", text: "Register" },
+        ]}
+      />
       <LoginForm onSubmit={handleSubmit} />
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Back to home</Link>
-          </li>
-
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </>
   );
 }
 
@@ -88,23 +82,19 @@ function RegisterPage() {
   };
 
   return (
-    <div>
-      <h2>Register Page</h2>
-      <RegisterForm onSubmit={handleSubmit} />
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Back to home</Link>
-          </li>
+    <>
+      <PageLayout
+        heading="Register Page"
+        links={[
+          { to: "/", text: "Back to home" },
+          { to: "/login", text: "Login" },
+        ]}
+      />
 
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-      </div>
+      <RegisterForm onSubmit={handleSubmit} />
 
       <div>{error}</div>
-    </div>
+    </>
   );
 }
 
@@ -117,18 +107,17 @@ function UserDetailPage() {
   const searchParams = new URLSearchParams(location.search);
 
   const email = searchParams.get("email");
-  const password = searchParams.get("password");
+  // const password = searchParams.get("password");
 
   return (
-    <div>
-      <h2>User Detail Page</h2>
-      <p>
-        <h3>User details</h3>
+    <>
+      <PageLayout
+        heading="User Details"
+        links={[{ to: "/login", text: "Logout" }]}
+      />
+      <div>
         <em>{email}</em>
-        <br />
-        <strong>{password}</strong>
-      </p>
-      <Link to="/login">Logout</Link>
-    </div>
+      </div>
+    </>
   );
 }
