@@ -23,8 +23,17 @@ export default function UserLogin() {
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <PageLayout heading="NotFound" links={[{ to: "/", text: "Go Back" }]}>
+      <div>페이지를 찾을 수 없습니다.</div>
+    </PageLayout>
   );
 }
 
