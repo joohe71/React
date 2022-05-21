@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }) {
   const navigate = useNavigate();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -13,9 +13,16 @@ export default function LoginForm() {
     const password = passwordRef.current.value;
 
     // DetailPage로 이동하는 코드를 작성하세요.
-    if (!email || !password) {
-      alert("정확한 값을 입력해주세요");
-    } else navigate(`/detail?email=${email}&password=${password}`);
+    // if (!email || !password) {
+    //   alert("정확한 값을 입력해주세요");
+    // } else navigate(`/detail?email=${email}&password=${password}`);
+
+    const formData = {
+      email,
+      password,
+    };
+
+    onSubmit(formData);
   };
 
   return (
