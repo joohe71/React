@@ -58,8 +58,23 @@ export default function UserTableApp() {
 
   useEffect(() => {
     // query가 바뀔 때 서치 로직을 구현하세요.
-    console.log("쿼리가 바뀌었습니다.", query);
-  }, [query]);
+    if (!query) {
+      return setUsers(searchData);
+    }
+
+    const transformUser = (user) => {
+      return Object.values(filters)
+        .map((fn) => fn(user)) // ['City']
+        .map((str) => str.toLowerCase()) // ['city']
+        .join();
+    };
+
+    const isUserQualified = (user) => transformUser(user).search(query) !== -1;
+
+    const filteredUsers = searchData.filter(isUserQualified);
+
+    setUsers(filteredUsers);
+  }, [query, filters, searchData]);
 
   return (
     <Container>
