@@ -4,11 +4,19 @@ import UsernameForm from "./UsernameForm";
 
 describe("유저명 폼을 렌더링합니다.", () => {
   test("유저명 폼에는 input이 있습니다.", () => {
-    render(<UsernameForm />);
+    // render(<UsernameForm />);
+
+    // // input을 찾고, placeholder가 제대로 들어있는지 확인합니다.
+    // // screen.getByRole을 이용합니다.
+    // const input = screen.getByRole("textbox");
+    // expect(input).toBeInTheDocument();
+    // expect(input).toHaveAttribute("placeholder", "유저명을 입력하세요");
+
+    const { getByRole } = render(<UsernameForm />);
 
     // input을 찾고, placeholder가 제대로 들어있는지 확인합니다.
     // screen.getByRole을 이용합니다.
-    const input = screen.getByRole("textbox");
+    const input = getByRole("textbox");
     expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute("placeholder", "유저명을 입력하세요");
   });
